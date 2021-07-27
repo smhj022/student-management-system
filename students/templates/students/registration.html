@@ -5,8 +5,15 @@
 {% endblock %}
 
 {% block content %}
-    <form action="">
+<section>
+    <form action="" , method="POST">
         {% csrf_token %}
-        {{ form }}
+        {% for form_field in form %}
+            {{ form_field.label_tag }}
+            {{ form_field }}
+            {{ form_field.errors }}
+        {% endfor %}
+        <button>Submit</button>
     </form>
+</section>
 {% endblock %}
