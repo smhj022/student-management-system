@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <h1>Student Registration</h1>
+{% endblock %}
+
+{% block content %}
+    <form action="">
+        {% csrf_token %}
+        {{ form }}
+    </form>
+{% endblock %}
