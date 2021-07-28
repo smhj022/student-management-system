@@ -10,7 +10,7 @@
 <section>
     <ul>
         {% for cl in CLASSES_CHOICE_LIST %}
-        <li><a href="">Class {{cl.0}} </a></li>
+        <li><a href="{% url 'class-details' cl.0 %}">Class {{cl.0}} </a></li>
         {% endfor %}
     </ul>
 </section>

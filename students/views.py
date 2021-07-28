@@ -2,14 +2,12 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 # from django.http import HttpResponse
 from django.views import View
-from django.views.generic.base import TemplateView
 
 from students.constants import CLASSES_CHOICE_LIST
 
 from .form import StudentRegistration
 from .models import Student
 
-# CLASSES_IN_SCHOOL = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th"]
 # Create your views here.
 
 
@@ -60,4 +58,13 @@ class StudentEntry(View):
 
         return render(request, "students/registration.html", {
             "form": form
+        })
+
+
+class ClassDetails(View):
+    def get(self, request, standard):
+        students_in_class = Student.objects.filter(standard=standard)
+        return render(request, "students/class_details.html", {
+            "students_in_class": students_in_class,
+            "standard": standard
         })
