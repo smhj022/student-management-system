@@ -1,6 +1,6 @@
 
-# Created by https://www.toptal.com/developers/gitignore/api/python,django,visualstudiocode
-# Edit at https://www.toptal.com/developers/gitignore?templates=python,django,visualstudiocode
+# Created by https://www.toptal.com/developers/gitignore/api/django,visualstudiocode,python
+# Edit at https://www.toptal.com/developers/gitignore?templates=django,visualstudiocode,python
 
 ### Django ###
 *.log
@@ -230,4 +230,4 @@ cython_debug/
 .history
 .ionide
 
-# End of https://www.toptal.com/developers/gitignore/api/python,django,visualstudiocode
+# End of https://www.toptal.com/developers/gitignore/api/django,visualstudiocode,python

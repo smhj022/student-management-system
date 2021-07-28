@@ -23,7 +23,7 @@ class StudentEntry(View):
 
         if form.is_valid:
             data = request.POST
-            print(data)
+            print(data["standard"])
             return HttpResponseRedirect("/")
 
         return render(request, "students/registration.html", {
