@@ -11,4 +11,4 @@ class Student(models.Model):
     city = models.CharField(max_length=30)
 
     def __str__(self) -> str:
-        return f"{self.name} ({self.standard})"
+        return f"{self.name} ({self.standard}, {self.roll_no})"

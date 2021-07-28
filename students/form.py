@@ -1,8 +1,6 @@
 from django import forms
 
 class_choice = [
-    ("LKG", "LKG"),
-    ("UKG", "UKG"),
     ("1st", "1st"),
     ("2nd", "2nd"),
     ("3rd", "3rd"),
@@ -12,7 +10,9 @@ class_choice = [
     ("7th", "7th"),
     ("8th", "8th"),
     ("9th", "9th"),
-    ("10th",  "10th")
+    ("10th", "10th"),
+    ("11th", "11th"),
+    ("12th", "12th")
 ]
 gender = [
     ("Male", "Male"),
