@@ -1,10 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 # from django.http import HttpResponse
-from .form import StudentRegistration
 from django.views import View
+from .form import StudentRegistration
+from .models import Student
+
 
 # Create your views here.
+
+def roll_no_generator(no_of_Student_in_class, standard):
+    pass
 
 
 def index(request):
@@ -23,7 +28,9 @@ class StudentEntry(View):
 
         if form.is_valid:
             data = request.POST
-            print(data["standard"])
+            new_student_standard = (data["standard"])
+            student = Student.objects.filter(standard=new_student_standard)
+            print(student)
             return HttpResponseRedirect("/")
 
         return render(request, "students/registration.html", {
