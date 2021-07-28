@@ -1,10 +1,17 @@
 {% extends "base.html" %}
 
 {% block title %}
-    <h1>Student Section</h1>
+<h1>Student Section</h1>
 {% endblock %}
 
 
 {% block content %}
-    <h1>Welcome to student section Student Section</h1>
+<h1>Welcome to Student Section</h1>
+<section>
+    <ul>
+        {% for cl in CLASSES_CHOICE_LIST %}
+        <li><a href="">Class {{cl.0}} </a></li>
+        {% endfor %}
+    </ul>
+</section>
 {% endblock %}

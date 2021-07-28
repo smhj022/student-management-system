@@ -1,12 +1,17 @@
-from django.shortcuts import render
 from django.http import HttpResponseRedirect
+from django.shortcuts import render
 # from django.http import HttpResponse
 from django.views import View
+from django.views.generic.base import TemplateView
+
+from students.constants import CLASSES_CHOICE_LIST
+
 from .form import StudentRegistration
 from .models import Student
 
-
+# CLASSES_IN_SCHOOL = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th"]
 # Create your views here.
+
 
 def roll_no_generator(no_of_Student_in_class, standard):
     if len(standard) == 4:
@@ -22,7 +27,7 @@ def roll_no_generator(no_of_Student_in_class, standard):
 
 
 def index(request):
-    return render(request, "students/index.html")
+    return render(request, "students/index.html", {"CLASSES_CHOICE_LIST": CLASSES_CHOICE_LIST})
 
 
 class StudentEntry(View):
@@ -48,7 +53,8 @@ class StudentEntry(View):
             student_roll_no = roll_no_generator(students_in_class, student_standard)
 
             # add student to database
-            new_student = Student(name=student_name, standard=student_standard, roll_no=student_roll_no, gender=student_gender, city=student_city)
+            new_student = Student(name=student_name, standard=student_standard,
+                                  roll_no=student_roll_no, gender=student_gender, city=student_city)
             new_student.save()
             return HttpResponseRedirect("/")
 
