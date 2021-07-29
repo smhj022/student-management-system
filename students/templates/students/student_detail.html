@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    <h1>Students Detail</h1>
+{% endblock %}
+
+{% block content %}
+    <h2>Name : {{ student_detail.name }}</h2>
+    <h2>Standard : {{ student_detail.standard }}</h2>
+    <h2>Roll NO. : {{ student_detail.roll_no }}</h2>
+    <h2>Gender : {{ student_detail.gender }}</h2>
+    <h2>City : {{ student_detail.city }}</h2>
+    <hr>
+    <section>
+        <h1>Update Detail</h1>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <label for="name">Name : </label>
+            <input type="text" name="name" value="{{ student_detail.name }}">   
+            <label for="standard">Standard : </label>
+            <input type="text" name="standard" value="{{ student_detail.standard }}"> 
+            <label for="gender">Gender : </label>
+            <input type="text" name="gender" value="{{ student_detail.gender }}"> 
+            <label for="city">City : </label>
+            <input type="text" name="city" value="{{ student_detail.city }}"> 
+            <button>Update</button>
+        </form>
+    </section>
+{% endblock %}

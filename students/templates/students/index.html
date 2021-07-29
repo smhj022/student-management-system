@@ -14,4 +14,10 @@
         {% endfor %}
     </ul>
 </section>
+<section>
+    <form action="{% url 'registration-page' %}">
+        {% csrf_token %}
+        <button>Add Student</button>
+    </form>
+</section>
 {% endblock %}

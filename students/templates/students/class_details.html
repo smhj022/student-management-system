@@ -25,18 +25,16 @@ tr:nth-child(even) {
 
 <table>
   <tr>
-    <th>Id</th>
-    <th>Name</th>
     <th>Roll No.</th>
+    <th>Name</th>
     <th>Gender</th>
-    <th>city</th>
+    <th>City</th>
   </tr>
   
       {% for student in students_in_class %}
       <tr>
-        <td>{{ student.id }}</td>
-        <td>{{ student.name }}</td>
         <td>{{ student.roll_no }}</td>
+        <td><a href="{% url 'student-details' student.id %}">{{ student.name }}</a></td>
         <td>{{ student.gender }}</td>
         <td>{{ student.city }}</td>
         </tr>

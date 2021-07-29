@@ -11,15 +11,20 @@ from .models import Student
 # Create your views here.
 
 
-def roll_no_generator(no_of_Student_in_class, standard):
+def roll_no_generator(standard):
+    students = Student.objects.filter(standard=standard)
+    students_in_class = len(students)
+    try:
+        last_student_roll_no = students[students_in_class-1].roll_no
+        last_value_of_roll_no = int(last_student_roll_no[-1])
+    except AssertionError:
+        last_value_of_roll_no = 0
+
     if len(standard) == 4:
         roll_prefix = standard[:2]
-        print(type(roll_prefix))
-        print(roll_prefix)
     else:
         roll_prefix = standard[0]
-    roll_suffix = str(no_of_Student_in_class+1)
-    print(roll_suffix)
+    roll_suffix = str(last_value_of_roll_no+1)
     roll_no = roll_prefix + "0" + roll_suffix
     return roll_no
 
@@ -46,9 +51,7 @@ class StudentEntry(View):
             student_standard = data["standard"]
 
             # generating roll no
-            students = Student.objects.filter(standard=student_standard)
-            students_in_class = len(students)
-            student_roll_no = roll_no_generator(students_in_class, student_standard)
+            student_roll_no = roll_no_generator(student_standard)
 
             # add student to database
             new_student = Student(name=student_name, standard=student_standard,
@@ -68,3 +71,31 @@ class ClassDetails(View):
             "students_in_class": students_in_class,
             "standard": standard
         })
+
+
+class StudentDetails(View):
+    def get(self, request, id):
+        form = StudentRegistration()
+        student_detail = Student.objects.get(id=id)
+        return render(request, "students/student_detail.html", {
+            "student_detail": student_detail,
+            "form": form
+        })
+
+    def post(self, request, id):
+        req_body_params = request.POST
+        try:
+            student_detail: Student = Student.objects.get(id=id)
+            student_detail.name = req_body_params["name"]
+            student_detail.standard = req_body_params["standard"]
+            student_detail.gender = req_body_params["gender"]
+            student_detail.city = req_body_params["city"]
+            student_detail.roll_no = roll_no_generator(req_body_params["standard"])
+            student_detail.save()
+            return HttpResponseRedirect("/")
+
+        except Student.DoesNotExist:
+            return HttpResponseRedirect("/")
+
+
+        

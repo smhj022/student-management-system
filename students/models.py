@@ -1,6 +1,7 @@
 from django.db import models
 
 # Create your models here.
+# Object Relational Mapper (ORM)
 
 
 class Student(models.Model):
